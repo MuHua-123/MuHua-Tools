@@ -1,0 +1,11 @@
+{
+  "name": "com.muhua.tools",
+  "version": "0.0.1",
+  "displayName": "MuHua Tools",
+  "description": "\u57fa\u7840\u5de5\u5177\u5305",
+  "author": {
+    "name": "MuHua",
+    "email": "2960208585@qq.com"
+  },
+  "type": "tool"
+}
