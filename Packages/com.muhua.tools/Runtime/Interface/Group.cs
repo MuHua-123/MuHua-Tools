@@ -11,9 +11,9 @@ namespace MuHua {
         protected virtual void Awake() { Initialization(); }
         protected virtual void OnDestroy() { Release(); }
 
-        protected virtual void Initialization() { OnSelect += Group_OnSelect; }
-        protected virtual void Release() { OnSelect -= Group_OnSelect; }
-        protected virtual void Group_OnSelect(T target) {
+        public virtual void Initialization() { OnSelect += Group_OnSelect; }
+        public virtual void Release() { OnSelect -= Group_OnSelect; }
+        public virtual void Group_OnSelect(T target) {
             if (target == this) {
                 if (currentSelect == this && isCancel) {
                     currentSelect = null;
@@ -23,8 +23,8 @@ namespace MuHua {
             }
             else { DefaultState(); }
         }
-        protected virtual void DefaultState() { }
-        protected virtual void SelectState() { }
+        public virtual void DefaultState() { }
+        public virtual void SelectState() { }
         public virtual void TriggerSelect() { OnSelect?.Invoke((T)this); }
     }
 }
