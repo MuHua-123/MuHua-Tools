@@ -11,6 +11,6 @@ public class ROModel {
 
     public RTHandle OutlineRT;
     public float OutlineSize = 5;
-    public Color OutlineColor = Color.white;
+    public Material OutlineColor;
     public List<Transform> RenderObjs = new List<Transform>();
 }

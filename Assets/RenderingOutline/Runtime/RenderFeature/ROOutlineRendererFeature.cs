@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 
-public class ROOutline : ScriptableRendererFeature {
+public class ROOutlineRendererFeature : ScriptableRendererFeature {
     private ROOutlineRenderPass OutlineRenderPass;
     public override void Create() {
         OutlineRenderPass = new ROOutlineRenderPass();
@@ -23,36 +23,53 @@ public class ROOutlineRenderPass : ScriptableRenderPass {
     public const string Unlit_Shader = "Universal Render Pipeline/Unlit";
     public const string Outline_Shader = "Shader Graphs/Outline";
 
-    public RTHandle tempRT;
-    public Material unlitMaterial;
-    public Material outlineMaterial;
+    public RTHandle TempRTHandel;
+    public Material UnlitMaterial;
+    public Material OutlineMaterial;
+
     public ROOutlineRenderPass() {
         Shader unlit = Shader.Find(Unlit_Shader);
-        unlitMaterial = CoreUtils.CreateEngineMaterial(unlit);
+        UnlitMaterial = CoreUtils.CreateEngineMaterial(unlit);
         Shader outline = Shader.Find(Outline_Shader);
-        outlineMaterial = CoreUtils.CreateEngineMaterial(outline);
+        OutlineMaterial = CoreUtils.CreateEngineMaterial(outline);
     }
     public void Setup(in RenderingData renderingData) {
-        outlineMaterial.SetFloat("_Size", ROModel.I.OutlineSize);
+        OutlineMaterial.SetFloat("_Size", ROModel.I.OutlineSize);
         RenderTextureDescriptor descriptor = renderingData.cameraData.cameraTargetDescriptor;
         descriptor.depthBufferBits = (int)DepthBits.None;
         RenderingUtils.ReAllocateIfNeeded(ref ROModel.I.OutlineRT, descriptor, name: "OutlineRT");
-        RenderingUtils.ReAllocateIfNeeded(ref tempRT, descriptor, name: "TempRT");
+        RenderingUtils.ReAllocateIfNeeded(ref TempRTHandel, descriptor, name: "TempRT");
     }
     public override void Execute(ScriptableRenderContext context, ref RenderingData renderingData) {
-        CommandBuffer cmd = CommandBufferPool.Get(ProfilerTag);
-        CoreUtils.SetRenderTarget(cmd, tempRT);
+        CommandBuffer command = CommandBufferPool.Get(ProfilerTag);
+        CoreUtils.SetRenderTarget(command, TempRTHandel);
 
-        //DrawRenderer(cmd, unlitMaterial);
+        DrawRenderer(command, UnlitMaterial);
 
-        outlineMaterial.SetTexture("_MainTex", tempRT);
-        Blit(cmd, ref renderingData, outlineMaterial);
+        OutlineMaterial.SetTexture("_MainTex", TempRTHandel);
+        Blit(command, ref renderingData, OutlineMaterial);
         RTHandle source = renderingData.cameraData.renderer.cameraColorTargetHandle;
-        Blitter.BlitCameraTexture(cmd, source, ROModel.I.OutlineRT);
+        Blitter.BlitCameraTexture(command, source, ROModel.I.OutlineRT);
 
-        context.ExecuteCommandBuffer(cmd);
-        CommandBufferPool.Release(cmd);
-        tempRT.Release();
+        context.ExecuteCommandBuffer(command);
+        CommandBufferPool.Release(command);
+        TempRTHandel.Release();
+    }
+    public void DrawRenderer(CommandBuffer command, Material material) {
+        ROModel.I.RenderObjs.RemoveAll(obj => obj == null);
+        for (int i = 0; i < ROModel.I.RenderObjs.Count; i++) {
+            Transform obj = ROModel.I.RenderObjs[i];
+            DrawRenderer(obj, command, material);
+        }
+    }
+    public void DrawRenderer(Transform obj, CommandBuffer command, Material material) {
+        Renderer[] renderers = obj.GetComponentsInChildren<Renderer>();
+        for (int i = 0; i < renderers.Length; i++) {
+            command.DrawRenderer(renderers[i], material, 0, 0);
+        }
+        if (obj.TryGetComponent(out Renderer renderer)) {
+            command.DrawRenderer(renderer, material, 0, 0);
+        }
     }
     public void Dispose() {
         if (ROModel.I.OutlineRT != null) { ROModel.I.OutlineRT?.Release(); }
