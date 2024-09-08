@@ -28,6 +28,23 @@ namespace MuHua {
             return hitInfo.transform != null;
         }
 
+        /// <summary> 鼠标坐标转世界坐标 </summary>
+        public static bool GetMouseToWorldPosition(out Vector3 position) {
+            return GetScreenToWorldPosition(Input.mousePosition, out position);
+        }
+        /// <summary> 鼠标坐标转世界坐标 </summary>
+        public static bool GetMouseToWorldPosition(Camera camera, out Vector3 position) {
+            return GetScreenToWorldPosition(camera, Input.mousePosition, out position);
+        }
+        /// <summary> 鼠标坐标转世界坐标 </summary>
+        public static bool GetMouseToWorldPosition(out Vector3 position, LayerMask planeLayerMask) {
+            return GetScreenToWorldPosition(Input.mousePosition, out position, planeLayerMask);
+        }
+        /// <summary> 鼠标坐标转世界坐标 </summary>
+        public static bool GetMouseToWorldPosition(Camera camera, out Vector3 position, LayerMask planeLayerMask) {
+            return GetScreenToWorldPosition(camera, Input.mousePosition, out position, planeLayerMask);
+        }
+
         public static bool GetMouseWorldSnappedPosition(out Vector3 position) {
             return GetMouseWorldSnappedPosition(out position, DefaultLayerMask);
         }
