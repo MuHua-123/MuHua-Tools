@@ -1,7 +1,8 @@
 using UnityEditor;
 using UnityEngine;
+using MuHua;
 
-namespace MuHua {
+namespace MuHuaEditor {
     [CustomPropertyDrawer(typeof(SceneNameAttribute))]
     public class SceneNameDrawer : PropertyDrawer {
         int sceneIndex = -1;

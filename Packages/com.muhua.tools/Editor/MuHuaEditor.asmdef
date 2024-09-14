@@ -1,5 +1,5 @@
 {
-    "name": "MuHua.Editor",
+    "name": "MuHuaEditor",
     "rootNamespace": "",
     "references": [
         "GUID:cd219cab179c42e4b84b0018ae078e03"

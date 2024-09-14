@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using MuHua;
 
-namespace MuHua {
+namespace MuHuaEditor {
     /// <summary>
     /// 定义对带有 `CustomLabelAttribute` 特性的字段的面板内容的绘制行为。
     /// </summary>
