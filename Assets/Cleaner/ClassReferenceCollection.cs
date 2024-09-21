@@ -1,10 +1,3 @@
-/**
-	asset cleaner
-	Copyright (c) 2015 Tatsuhiko Yamamura
-
-    This software is released under the MIT License.
-    http://opensource.org/licenses/mit-license.php
-*/
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;

@@ -4,10 +4,11 @@ using UnityEngine;
 
 namespace MuHua {
     public class IModel<Modle> where Modle : new() {
-        private static Modle modle;
+        public static Modle I => Instantiate();
 
-        public static Modle I {
-            get { if (modle == null) { modle = new Modle(); } return modle; }
+        private static Modle model;
+        private static Modle Instantiate() {
+            return model == null ? model = new Modle() : model;
         }
     }
 }
