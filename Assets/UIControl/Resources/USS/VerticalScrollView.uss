@@ -1,0 +1,41 @@
+.vertical-scroll-view {
+    background-color: rgba(255, 255, 255, 0.5);
+    width: 300px;
+    height: 150px;
+}
+
+.vertical-scroll-view-viewport {
+}
+
+.vertical-scroll-view-content {
+}
+
+.vertical-scroll-view-slider {
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    background-color: rgba(255, 255, 255, 0.5);
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+}
+
+.vertical-scroll-view-dragger {
+    background-color: rgb(255, 126, 126);
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    left: auto;
+    width: 100%;
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+}
+
+.vertical-scroll-view-hide {
+    display: none;
+}
