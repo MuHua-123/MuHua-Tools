@@ -7,8 +7,6 @@ namespace MuHua {
         public static Modle I => Instantiate();
 
         private static Modle model;
-        private static Modle Instantiate() {
-            return model == null ? model = new Modle() : model;
-        }
+        private static Modle Instantiate() => model == null ? model = new Modle() : model;
     }
 }

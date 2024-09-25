@@ -1,5 +1,0 @@
-<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <Style src="project://database/Assets/UIControl/Resources/USS/Default.uss?fileID=7433441132597879392&amp;guid=fc67c76a4f0792b4ba9b6c17ec7a3658&amp;type=3#Default" />
-    <Style src="project://database/Assets/UIControl/Resources/USS/PopupPrompt.uss?fileID=7433441132597879392&amp;guid=7d555d2a2ed2d0042bf8a6aa00bdcfe0&amp;type=3#PopupPrompt" />
-    <PopupPrompt Text="ABC" Button-Text="关闭" style="display: flex;" />
-</ui:UXML>
