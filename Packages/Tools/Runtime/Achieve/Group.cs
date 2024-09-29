@@ -5,8 +5,9 @@ using UnityEngine;
 
 namespace MuHua {
     public class Group<T> : MonoBehaviour {
-        public static event Action<T> OnSelect;
         public static T currentSelect;
+        public static event Action<T> OnSelect;
+        public static void Select(T value) => OnSelect?.Invoke(value);
 
         public T value;
         protected bool isCancel;
