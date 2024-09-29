@@ -18,7 +18,7 @@ public class HexagonMapSystem : MonoBehaviour {
         Loop((x, y) => { array[x, y] = Generate(x, y); });
     }
     private void Update() {
-        if (Input.GetMouseButtonDown(0) && RayTool.GetMouseWorldSnappedPosition(out Vector3 worldPosition)) {
+        if (Input.GetMouseButtonDown(0) && RayTool.GetMouseToWorldPosition(out Vector3 worldPosition)) {
             Vector2Int xy = GetXY(worldPosition);
             Debug.Log(xy);
         }
