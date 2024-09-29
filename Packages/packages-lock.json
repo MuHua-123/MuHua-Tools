@@ -1,7 +1,7 @@
 {
   "dependencies": {
     "com.muhua.tools": {
-      "version": "file:com.muhua.tools",
+      "version": "file:Tools",
       "depth": 0,
       "source": "embedded",
       "dependencies": {}
