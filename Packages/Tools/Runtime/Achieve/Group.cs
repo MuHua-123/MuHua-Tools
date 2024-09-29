@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace MuHua {
-    public class Group<T> : MonoBehaviour, IBinding {
+    public class Group<T> : MonoBehaviour {
         public static T currentSelect;
         public static event Action<T> OnSelect;
         public static void Select(T value) => OnSelect?.Invoke(value);
