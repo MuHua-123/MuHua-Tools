@@ -98,12 +98,12 @@ namespace MuHua {
             }
         }
 
-        public static void ITimeAndImages(Action<DateTime, Texture2D> action) {
+        public static void TimeAndImages(Action<DateTime, Texture2D> action) {
             if (!isInstance) { Debug.LogError("Network Error!——Not Initialized"); return; }
-            IEnumerator routine = instance.IUpdateTime((time) => { ITimeAndImages(time, action); });
+            IEnumerator routine = instance.IUpdateTime((time) => { TimeAndImages(time, action); });
             instance.StartCoroutine(routine);
         }
-        public static void ITimeAndImages(DateTime time, Action<DateTime, Texture2D> action) {
+        public static void TimeAndImages(DateTime time, Action<DateTime, Texture2D> action) {
             if (!isInstance) { Debug.LogError("Network Error!——Not Initialized"); return; }
             IEnumerator routine = instance.IScreenshot((texture2D) => { action?.Invoke(time, texture2D); });
             instance.StartCoroutine(routine);

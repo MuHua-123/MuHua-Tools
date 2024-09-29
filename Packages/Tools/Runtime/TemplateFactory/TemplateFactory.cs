@@ -40,5 +40,11 @@ namespace MuHua {
             }
             return transforms;
         }
+        public static void Initialize(this Transform obj) {
+            obj.GetComponent<IBinding>()?.Initialize();
+        }
+        public static void Release(this Transform obj) {
+            obj.GetComponent<IBinding>()?.Release();
+        }
     }
 }
