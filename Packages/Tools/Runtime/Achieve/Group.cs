@@ -17,8 +17,8 @@ namespace MuHua {
         public virtual void Initialize() { OnSelect += Group_OnSelect; }
         public virtual void Release() { OnSelect -= Group_OnSelect; }
         public virtual void Group_OnSelect(T target) {
-            if (target.Equals(value)) {
-                if (currentSelect.Equals(this) && isCancel) {
+            if (target.Equals(value) && value != null) {
+                if (value.Equals(currentSelect) && isCancel) {
                     currentSelect = default;
                     OnSelect?.Invoke(default);
                 }
