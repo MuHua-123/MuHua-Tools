@@ -26,7 +26,7 @@ namespace MuHua {
             if (destroy) { DestroySon(parent, temp); }
             List<Transform> transforms = new List<Transform>();
             foreach (T item in list) {
-                transforms.Add(Instantiate(temp, parent, item, active));
+                transforms.Add(parent.Instantiate(temp, item, active));
             }
             return transforms;
         }
@@ -35,16 +35,10 @@ namespace MuHua {
             List<Transform> transforms = new List<Transform>();
             for (int y = 0; y < array.GetLength(1); y++) {
                 for (int x = 0; x < array.GetLength(0); x++) {
-                    transforms.Add(Instantiate(temp, parent, array[x, y], active));
+                    transforms.Add(parent.Instantiate(temp, array[x, y], active));
                 }
             }
             return transforms;
-        }
-        public static void Initialize(this Transform obj) {
-            obj.GetComponent<IBinding>()?.Initialize();
-        }
-        public static void Release(this Transform obj) {
-            obj.GetComponent<IBinding>()?.Release();
         }
     }
 }
