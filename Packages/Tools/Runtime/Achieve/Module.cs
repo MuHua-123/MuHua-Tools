@@ -1,11 +1,14 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace MuHua {
-    [Obsolete("使用Module替换")]
-    public class Model<ModuleCore> where ModuleCore : new() {
+    /// <summary>
+    /// 模块基类
+    /// </summary>
+    /// <typeparam name="ModuleCore"></typeparam>
+    public class Module<ModuleCore> where ModuleCore : Module<ModuleCore>, new() {
+        /// <summary> 模块单例 </summary>
         public static ModuleCore I => Instantiate();
 
         private static ModuleCore core;
